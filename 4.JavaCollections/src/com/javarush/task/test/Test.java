@@ -1,30 +1,52 @@
 package com.javarush.task.test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.StringWriter;
-
 /**
  * Created by Vladimir on 13.03.2017.
  */
 public class Test {
+    private String input;
+
+    public Test(String in) {
+        input = in;
+    }
+
+    public void check() {
+        int stackSize = input.length();
+        Stack theStack = new Stack(stackSize);
+
+        for (int j = 0; j < input.length(); j++)
+        {
+            char ch = input.charAt(j);
+            switch (ch) {
+                case '{': // opening symbols
+                case '[':
+                case '(':
+                    theStack.push(ch); // push them
+                    break;
+
+                case '}': // closing symbols
+                case ']':
+                case ')':
+                    if (!theStack.isEmpty()) // if stack not empty,
+                    {
+                        char chx = theStack.pop(); // pop and check
+                        if ((ch == '}' && chx != '{') || (ch == ']' && chx != '[')
+                                || (ch == ')' && chx != '('))
+                            System.out.println("Error: " + ch + " at " + j);
+                    } else
+                        // prematurely empty
+                        System.out.println("Error: " + ch + " at " + j);
+                    break;
+                default: // no action on other characters
+                    break;
+            }
+        }
+        if (!theStack.isEmpty())
+            System.out.println("Error: missing right delimiter");
+    }
     public static void main(String[] args) throws Exception {
-        Cat cat = new Cat();
-        cat.name = "Murka";
-        cat.age = 5;
-
-        Dog dog = new Dog();
-        dog.name = "Killer";
-        dog.age = 8;
-        dog.owner = "Bill Jeferson";
-
-        House house = new House();
-        house.pets.add(dog);
-        house.pets.add(cat);
-
-        StringWriter writer = new StringWriter();
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(writer, house);
-        System.out.println(writer.toString());
+        String input = "[(])";
+        Test theChecker = new Test(input);
+        theChecker.check();
     }
 }
