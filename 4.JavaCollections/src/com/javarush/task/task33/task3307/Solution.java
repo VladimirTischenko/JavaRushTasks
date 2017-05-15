@@ -34,7 +34,7 @@ public class Solution {
 
         @Override
         public String toString() {
-            return "Cat{" +
+            return "Example{" +
                     "name='" + name + '\'' +
                     ", age=" + age +
                     ", weight=" + weight +

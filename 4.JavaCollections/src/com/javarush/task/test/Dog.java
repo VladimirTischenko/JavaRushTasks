@@ -3,15 +3,15 @@ package com.javarush.task.test;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(name = "cat")
+@XmlType(name = "dog")
 @XmlRootElement
-public class Cat
+public class Dog
 {
     public String name;
     public int age;
     public int weight;
 
-    public Cat()
+    public Dog()
     {
     }
 }

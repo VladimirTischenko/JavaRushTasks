@@ -1,52 +1,21 @@
 package com.javarush.task.test;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
+
 /**
  * Created by Vladimir on 13.03.2017.
  */
 public class Test {
-    private String input;
-
-    public Test(String in) {
-        input = in;
-    }
-
-    public void check() {
-        int stackSize = input.length();
-        Stack theStack = new Stack(stackSize);
-
-        for (int j = 0; j < input.length(); j++)
-        {
-            char ch = input.charAt(j);
-            switch (ch) {
-                case '{': // opening symbols
-                case '[':
-                case '(':
-                    theStack.push(ch); // push them
-                    break;
-
-                case '}': // closing symbols
-                case ']':
-                case ')':
-                    if (!theStack.isEmpty()) // if stack not empty,
-                    {
-                        char chx = theStack.pop(); // pop and check
-                        if ((ch == '}' && chx != '{') || (ch == ']' && chx != '[')
-                                || (ch == ')' && chx != '('))
-                            System.out.println("Error: " + ch + " at " + j);
-                    } else
-                        // prematurely empty
-                        System.out.println("Error: " + ch + " at " + j);
-                    break;
-                default: // no action on other characters
-                    break;
-            }
-        }
-        if (!theStack.isEmpty())
-            System.out.println("Error: missing right delimiter");
-    }
     public static void main(String[] args) throws Exception {
-        String input = "[(])";
-        Test theChecker = new Test(input);
-        theChecker.check();
+        String xmldata = "<zoo><cat/><cat/><dog/><cat/></zoo>";
+        StringReader reader = new StringReader(xmldata);
+
+        JAXBContext context = JAXBContext.newInstance(Cat.class, Zoo.class, Dog.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        Zoo zoo = (Zoo) unmarshaller.unmarshal(reader);
+        System.out.println(zoo);
     }
 }

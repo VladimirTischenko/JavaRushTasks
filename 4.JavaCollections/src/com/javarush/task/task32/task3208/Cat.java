@@ -17,6 +17,6 @@ public class Cat implements Animal {
 
     @Override
     public void printName() throws RemoteException {
-        System.out.print("Cat " + name + " ");
+        System.out.print("Example " + name + " ");
     }
 }
