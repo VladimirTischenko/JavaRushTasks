@@ -3,16 +3,12 @@ package com.javarush.task.task33.task3309;
 import org.w3c.dom.*;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayInputStream;
 import java.io.StringWriter;
-import java.io.Writer;
 import java.util.regex.Pattern;
 
 /*
