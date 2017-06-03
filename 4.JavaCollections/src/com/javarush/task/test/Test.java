@@ -8,19 +8,15 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        List<Integer> intList = new ArrayList<Integer>();
-        intList.add(1);
-        intList.add(2);
-        System.out.println("Список до обработки дженерик-методом: " + intList);
-        Utilities.fill(intList, 0);
-        System.out.println("Список после обработки дженерик-методом: "
-                + intList);
+        ArrayList<MagicWarrior> magi = new ArrayList<>();
+        for(int i=0;i<10;i++)
+            magi.add(new MagicWarrior());
+
+        ArrayList<ArcherWarrior> archers = new ArrayList<>();
+        for(int i=0;i<10;i++)
+            archers.add(new ArcherWarrior());
+
+//        boolean isMagicCooler = WarriorManager.fight(magi, archers);
     }
 }
 
-class Utilities {
-    public static <T> void fill(List<T> list, T val) {
-        for (int i = 0; i < list.size(); i++)
-            list.set(i, val);
-    }
-}
